@@ -1,0 +1,8 @@
+LIBRARY HydroSave
+EXPORTS
+    HydroSave_Init
+    HydroSave_GetVersion
+    HydroSave_GetHookStatus
+    HydroSave_GetLastSaveError
+    HydroSave_GetSuccessfulWrites
+    HydroSave_GetStorageStatus

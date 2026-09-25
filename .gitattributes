@@ -1,0 +1,27 @@
+* text=auto
+
+# Windows installers and configuration retain CRLF on checkout.
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.ini text eol=crlf
+
+# Source and documentation use consistent LF line endings.
+*.cpp text eol=lf
+*.h text eol=lf
+*.cs text eol=lf
+*.def text eol=lf
+*.fx text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Never apply text conversion to packaged binaries.
+*.dll binary
+*.exe binary
+*.png binary
+*.zip binary
+
+# Preserve the exact released installer payload bytes, including config/shader.
+payload/*.ini -text -eol whitespace=cr-at-eol
+payload/reshade-shaders/Shaders/HydroBezel.fx -text -eol

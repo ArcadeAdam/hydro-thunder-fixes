@@ -1,0 +1,64 @@
+# Compiler and local test output
+/build/
+/tests/results/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.asm
+*.exe
+*.log
+
+# Keep only the two intentional, redistributable installer DLLs.
+*.dll
+!/payload/HydroSave.dll
+!/payload/d3d11.dll
+
+# Release archives belong in Releases, not in source history.
+*.zip
+*.7z
+*.rar
+*.zip.sha256
+
+# Local runtime, game, account, profile, artwork, and score data
+/UserProfiles/
+/GameProfiles/
+/Metadata/
+/Icons/
+/libs/
+/TeknoParrot/
+/OpenParrotWin32/
+/OpenParrotx64/
+/FFBBlaster/
+/Backups/
+/private-*/
+**/ParrotData.xml
+**/teknoparrot.ini
+**/CMOS*.bin
+**/HydroSave.last-good.bin
+**/*.nvram
+**/*.eeprom
+**/*_e2prom.bin
+**/bezel.png
+**/HydroThunder.png
+**/HydroFixes.install.json
+**/HydroFixes-backup*/
+**/HydroRuntime-manifest.json
+**/FasterRuntime-manifest.json
+**/SETUP-INCOMPLETE.txt
+**/STAGING-INCOMPLETE.txt
+Stage-HydroRuntime.ps1
+
+# Local credentials and editor state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.vs/
+.vscode/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
