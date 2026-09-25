@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0
+
+- Included the exact 1920 x 1080 transparent bezel PNG from the verified setup.
+- The bezel installer now installs the bundled artwork automatically to the
+  game folder and ReShade texture folder. Existing images are backed up and
+  restored by the uninstaller.
+- Added `-BezelPath` for an explicit custom image and PNG validation before
+  writing any installation files.
+- Added fresh-install, artwork replacement/restoration, invalid-image, and
+  save-only coverage to the installer checks.
+- Retained the existing ReShade shader, save-helper binaries, and optional
+  faster-runtime setup. Added an artwork provenance notice and a repository
+  release builder with an explicit file allowlist.
+
 ## 1.1.0
 
 - Added an optional, separate Hydro runtime builder using the recipient's own
@@ -20,5 +34,4 @@
 - Included source, synthetic storage tests, installer/rollback tests, backup and
   uninstall support, and third-party license notices.
 
-Repository preparation after the 1.1.0 release adds documentation and Git metadata
-only. See [REPOSITORY-NOTES.md](REPOSITORY-NOTES.md); the released ZIP is unchanged.
+The earlier 1.0.0 and 1.1.0 release archives remain unchanged.

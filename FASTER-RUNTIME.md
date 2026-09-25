@@ -1,4 +1,4 @@
-# Optional faster Hydro runtime — package 1.1.0
+# Optional faster Hydro runtime — package 1.2.0
 
 On the tested cabinet, this separate runtime reduced time to graphics from about
 **267 seconds to 172 seconds**, a saving of about **95 seconds (36%)**. The user
@@ -8,7 +8,8 @@ and results will vary with the cabinet and its devices.
 This is an optional addition to the bezel/save fixes. `INSTALL.cmd` does not build
 or switch runtimes. The shared ZIP contains only this setup script and guide for
 the runtime change: **no TeknoParrot/FFB/SDL binaries, account data, user profiles,
-controls, game files, saved scores, or artwork are redistributed**.
+controls, game files, or saved scores are redistributed** by the runtime builder.
+The separate bezel installer now includes its PNG; see `Licenses/Bezel-NOTICE.md`.
 
 ## Required local donors
 

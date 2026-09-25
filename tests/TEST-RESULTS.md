@@ -51,5 +51,16 @@ Assembly inspection found no `__chkstk` calls in the production source output.
 The largest explicit local stack allocation is 268 bytes. Large pathname and
 CMOS buffers use static or heap storage.
 
-All data in these tests is synthetic. No real cabinet score file or initials
+All score data in these tests is synthetic. No real cabinet score file or initials
 are test fixtures. The tests do not constitute a native game restart test.
+
+## Installer 1.2.0
+
+44 installer checks passed using isolated folders, the supported original wrapper
+provided locally, and the bundled bezel. Coverage includes missing artwork,
+default/custom image copies, both artwork backups/restoration, preflight without
+writes, corrupt/wrong-size PNG rejection, existing-install refusal, save-only
+behavior, preservation of score/recovery sentinels and later control changes,
+and refusal to overwrite artwork modified after installation. The image and
+reference-wrapper hashes remained unchanged. Process-presence checks were mocked
+only for these isolated filesystem fixtures; no live game folders were changed.

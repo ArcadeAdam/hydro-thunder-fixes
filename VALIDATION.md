@@ -1,6 +1,25 @@
 # Validation status
 
-Release 1.1.0 preserves the bezel/save payload from 1.0.0 and adds an optional local runtime builder. Bezel appearance, welcome-banner dismissal, native score writing and score retention after restarting have been verified on the tested cabinet.
+Release 1.2.0 bundles the exact bezel image from the verified cabinet and adds automatic artwork installation with backup/restoration. The ReShade/save-helper/shader payloads and optional 1.1.0 faster-runtime builder remain unchanged. Bezel appearance, welcome-banner dismissal, native score writing and score retention after restarting were verified on the tested cabinet.
+
+## Release 1.2.0 installer validation
+
+- 44 isolated installer checks passed, covering fresh folders without a bezel,
+  automatic bundled-image installation, both existing image backups/restoration,
+  custom `-BezelPath`, non-writing preflight, malformed or incorrectly sized PNG
+  rejection before writes, save-only behavior, and changed-artwork uninstall
+  refusal. Existing score/recovery sentinels and later controller edits survived.
+- The bundled image is byte-identical to the original and live ReShade texture:
+  SHA-256 `13ea7dd654e4065362c255b04d8733edda797dfbec826308690d87782f02ff7a`.
+  It is 1920 x 1080 RGBA with a transparent gameplay area; no pixels were changed.
+- PNG validation covers chunk structure/CRCs, dimensions, decompressed scanline
+  bounds/filter bytes and zlib checksum using the existing Windows frameworks.
+- Tests exercised real filesystem writes/restoration in isolated fixtures. Only
+  the running-process preflight was mocked; no live game or profile was changed.
+- This release changes installation of already verified artwork, not rendering
+  code or native score hooks. No new live gameplay run was needed for the copy.
+
+## Earlier gameplay and runtime validation
 
 Live configuration: original arcade Hydro Thunder 01.01b (`HYDRO_x64_LAN.exe`, x86), ThunderGlide2x v1.10 D3D11, TeknoParrot UI 1.0.0.2156 / core 1.0.0.3755, ReShade 6.8.0, and a 1920x1080 output frame. Other executable names must pass the same runtime code guards; they were not separately play-tested.
 
