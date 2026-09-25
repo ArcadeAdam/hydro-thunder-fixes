@@ -10,6 +10,10 @@ This source tree also includes build/test guidance in [CONTRIBUTING.md](CONTRIBU
 
 This pack is for the **1999 arcade Hydro Thunder, version 01.01b**, running through TeknoParrot with **ThunderGlide2x v1.10 D3D11**. It is an independent compatibility fix, not an official TeknoParrot release.
 
+![Hydro Thunder bezel by ArcadeAdam, with boat controls and tips surrounding a transparent gameplay area](payload/bezel.png)
+
+*Included 1920×1080 bezel by ArcadeAdam. Artwork preview; the center is transparent so the game shows through. [View the full-size image](payload/bezel.png).*
+
 The main installer provides two changes:
 
 - The included 1920×1080 bezel artwork, installed automatically and drawn by ReShade at the final output resolution. The persistent ReShade welcome/tutorial is disabled.
