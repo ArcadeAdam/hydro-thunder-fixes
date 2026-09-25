@@ -1,5 +1,6 @@
 # Compiler and local test output
 /build/
+/dist/
 /tests/results/
 *.obj
 *.pdb
@@ -41,6 +42,7 @@
 **/*.eeprom
 **/*_e2prom.bin
 **/bezel.png
+!/payload/bezel.png
 **/HydroThunder.png
 **/HydroFixes.install.json
 **/HydroFixes-backup*/

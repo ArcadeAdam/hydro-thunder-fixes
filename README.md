@@ -1,27 +1,27 @@
-# Hydro Thunder: bezel and high-score fixes — 1.1.0
+# Hydro Thunder: bezel and high-score fixes — 1.2.0
 
-**[Download the installer ZIP](https://github.com/ArcadeAdam/hydro-thunder-fixes/releases/download/v1.1.0/HydroThunder-Fixes-1.1.0.zip)**
-| [Release page and checksum](https://github.com/ArcadeAdam/hydro-thunder-fixes/releases/tag/v1.1.0)
+**[Download the installer ZIP — bezel included](https://github.com/ArcadeAdam/hydro-thunder-fixes/releases/download/v1.2.0/HydroThunder-Fixes-1.2.0.zip)**
+| [Release page and checksum](https://github.com/ArcadeAdam/hydro-thunder-fixes/releases/tag/v1.2.0)
 
-For installation, download `HydroThunder-Fixes-1.1.0.zip` and its matching
+For installation, download `HydroThunder-Fixes-1.2.0.zip` and its matching
 `.zip.sha256` file from the Releases page above. See
-[RELEASE-NOTES-v1.1.0.md](RELEASE-NOTES-v1.1.0.md) for the verified checksum.
+[RELEASE-NOTES-v1.2.0.md](RELEASE-NOTES-v1.2.0.md) for installation and upgrade notes.
 This source tree also includes build/test guidance in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 This pack is for the **1999 arcade Hydro Thunder, version 01.01b**, running through TeknoParrot with **ThunderGlide2x v1.10 D3D11**. It is an independent compatibility fix, not an official TeknoParrot release.
 
 The main installer provides two changes:
 
-- A sharp 1920×1080 bezel drawn by ReShade at the final output resolution. The persistent ReShade welcome/tutorial is disabled.
+- The included 1920×1080 bezel artwork, installed automatically and drawn by ReShade at the final output resolution. The persistent ReShade welcome/tutorial is disabled.
 - A file-based CMOS backend that loads and saves the game's real scores, settings and audits in `CMOS.bin` beside the game executable.
 
-Version 1.1.0 also includes an **optional faster-runtime setup script**. Using the recipient's own compatible TeknoParrot installations, it creates a separate Hydro runtime. The tested combination reduced startup from about 267 to 172 seconds with physical force feedback confirmed. See [FASTER-RUNTIME.md](FASTER-RUNTIME.md) for required versions, setup, and a Hydro-only LaunchBox assignment. No TeknoParrot runtime or private configuration is bundled.
+The pack also includes the **optional faster-runtime setup script** introduced in 1.1.0. Using the recipient's own compatible TeknoParrot installations, it creates a separate Hydro runtime. The tested combination reduced startup from about 267 to 172 seconds with physical force feedback confirmed. See [FASTER-RUNTIME.md](FASTER-RUNTIME.md) for required versions, setup, and a Hydro-only LaunchBox assignment. No TeknoParrot runtime or private configuration is bundled.
 
 ## Before installing
 
 - Close Hydro Thunder and TeknoParrot.
-- Your game folder must already contain the supported `Glide2x.dll` and a **1920×1080 `bezel.png` with a transparent center**.
-- This pack contains no game executable, game assets, bezel artwork, saved scores, accounts, controller bindings or cabinet network settings.
+- Your game folder must already contain the supported `Glide2x.dll`. The **1920×1080 bezel PNG with a transparent center is included**; no separate artwork download is needed.
+- This pack contains no game executable or runtime data, saved scores, accounts, controller bindings or cabinet network settings. The included bezel has a separate [artwork notice](Licenses/Bezel-NOTICE.md).
 - A different existing `d3d11.dll` is not overwritten. The installer also rejects unknown Glide wrappers.
 
 The supported original Glide SHA-256 is:
@@ -45,7 +45,13 @@ Alternatively, from PowerShell:
 
 Add `-CheckOnly` to validate without changing game files. To install just one component, add `-Components Save` or `-Components Bezel`. The saving-only component does not require the TeknoParrot folder.
 
+The bezel component installs the included image to both `bezel.png` in the game folder and `reshade-shaders\Textures\bezel.png`. Existing images at either location are backed up before replacement. To use your own compatible image instead, add `-BezelPath "C:\Artwork\MyBezel.png"`. The image must be a valid 1920×1080 PNG; use a transparent gameplay area. Save-only installation does not touch artwork.
+
 The installer creates a timestamped backup folder and an installation manifest in the game folder, including backup copies of any existing CMOS and recovery files. It disables only the native bezel field in the HydroThunder profile, and installs the supplied ReShade preset. It does not change game executables, scores, controller bindings, force-feedback settings or network configuration. Existing matching ReShade configuration files are backed up before this preset replaces them.
+
+### Upgrade from 1.0.0 or 1.1.0
+
+Close the game and TeknoParrot. Run the earlier package's `UNINSTALL.cmd` first, then run this package's `INSTALL.cmd`. Uninstall preserves `CMOS.bin` and `HydroSave.last-good.bin`; keep your score backups. If you use a dedicated faster Hydro runtime, select that TeknoParrot folder when installing. The installer intentionally rejects an existing installation rather than layering another backup over it.
 
 Launch the game normally through TeknoParrot or your existing frontend. No alternate game launcher or background save watcher is required.
 
@@ -65,7 +71,7 @@ The invalid-file safeguards apply to this helper's writes. TeknoParrot also perf
 
 ## What changes
 
-The bezel uses the official standard ReShade 6.8.0 DLL and a single standalone shader. It does not resize the game, change its field of view, or introduce additional pillarboxing. The existing artwork is copied without modifying its pixels. The preset expects a 1920×1080 output frame.
+The bezel uses the official standard ReShade 6.8.0 DLL and a single standalone shader. It does not resize the game, change its field of view, or introduce additional pillarboxing. The bundled image was created by **ArcadeAdam** and is included with the author's permission. The bundled image (or explicit custom image) is copied without modifying its pixels or transparency. The preset expects a 1920×1080 output frame. [View the included bezel](payload/bezel.png).
 
 The save helper replaces two obsolete raw-disk CMOS calls in process memory. It verifies the executable name, x86 image/base and both 32-byte function signatures before installing either hook. Both loading and writing are required: a write-only replacement could overwrite an existing score file during startup.
 
@@ -90,6 +96,15 @@ The uninstaller restores previous files, removes files introduced by the install
 - `Source/`: save-helper source and build script; rebuild requires Visual C++ Build Tools with the x86 toolchain and Windows SDK.
 - `Tools/PatchGlide.cs`: hash-pinned PE import patcher, compiled by PowerShell during installation.
 - `Tests/`: synthetic file-backend tests and installation/rollback tests. No personal save data is included.
-- `Licenses/`: ReShade's redistribution license. ReShade's source is at https://github.com/crosire/reshade/tree/v6.8.0 and official releases are at https://reshade.me/.
+- `Licenses/`: ReShade's redistribution license and the separate bezel-artwork provenance notice. ReShade's source is at https://github.com/crosire/reshade/tree/v6.8.0 and official releases are at https://reshade.me/.
 
-The new helper, shader, patcher and scripts are supplied with source for inspection and adaptation. Check `VALIDATION.md` for the tested configuration and remaining limits. The base bezel/save installation is unchanged from 1.0.0. Startup improvement requires the separate, optional runtime setup; it is not a universal loading-time guarantee.
+The new helper, shader, patcher and scripts are supplied with source for inspection and adaptation. Check `VALIDATION.md` for the tested configuration and remaining limits. Version 1.2.0 adds automatic artwork installation; the save-helper and renderer payloads are unchanged. Startup improvement requires the separate, optional runtime setup; it is not a universal loading-time guarantee.
+
+## Support development
+
+[Support ArcadeAdam via PayPal](https://www.paypal.com/paypalme/acbauer12/9.99)
+
+Tips are optional and support maintaining and testing these community fixes.
+Downloads and bug reports do not require payment. Clear bug reports, testing,
+and contributions are also welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+For sensitive security reports, follow [SECURITY.md](SECURITY.md).

@@ -9,6 +9,8 @@
 *.cpp text eol=lf
 *.h text eol=lf
 *.cs text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
 *.def text eol=lf
 *.fx text eol=lf
 *.md text eol=lf

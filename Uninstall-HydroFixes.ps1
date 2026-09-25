@@ -9,7 +9,7 @@ $manifest=Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
 if(-not [string]::Equals($manifest.GameDirectory,$gameDir,[StringComparison]::OrdinalIgnoreCase)) { throw 'Installation manifest does not match this folder.' }
 $backupRoot=[IO.Path]::GetFullPath($manifest.BackupDirectory).TrimEnd('\')
 if(-not [string]::Equals([IO.Path]::GetDirectoryName($backupRoot),$gameDir,[StringComparison]::OrdinalIgnoreCase) -or -not [IO.Path]::GetFileName($backupRoot).StartsWith('HydroFixes-backup-',[StringComparison]::OrdinalIgnoreCase)) { throw 'Backup directory must be an installation backup inside the game folder.' }
-$allowed=@('Glide2x.dll','HydroSave.dll','d3d11.dll','ReShade.ini','HydroBezel.ini','reshade-shaders\Shaders\HydroBezel.fx','reshade-shaders\Textures\bezel.png')
+$allowed=@('Glide2x.dll','HydroSave.dll','d3d11.dll','ReShade.ini','HydroBezel.ini','bezel.png','reshade-shaders\Shaders\HydroBezel.fx','reshade-shaders\Textures\bezel.png')
 $profileRestores=@{}
 $mutableCopies=New-Object 'System.Collections.Generic.List[object]'
 foreach($entry in $manifest.Files) {
